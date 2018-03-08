@@ -17,6 +17,7 @@
                                     <th>Alamat</th>
                                     <th>Judul Buku</th>
                                     <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Kembali</th>
                                     <th>Option</th>
                                 </tr>
                             </thead>
@@ -27,6 +28,7 @@
                                     <th>Alamat</th>
                                     <th>Judul Buku</th>
                                     <th>Tanggal Pinjam</th>
+                                    <th>Tanggal Kembali</th>
                                     <th>Option</th>
                                 </tr>
                             </tfoot>  
@@ -38,6 +40,7 @@
                                     <td>{{ $borrow->alamat_peminjam }}</td>
                                     <td>{{ $borrow->judul_buku }}</td>
                                     <td>{{ $borrow->tanggal_pinjam }}</td>
+                                    <td>{{ $borrow->tanggal_kembali }}</td>
                                     <td>
                                         <div class="text-center">
                                                 <a href="{{ url('admin/pengembalian/'.$borrow->id.'/destroy') }}" class="btn btn-sm btn-danger">Hapus</a>                                            

@@ -46,9 +46,11 @@
                                 <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                                 <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                                 @else
-                                <li><a class="nav-link" href="{{ url('admin/user') }}">{{ __('User') }}</a></li>
-                                <li><a class="nav-link" href="{{ url('admin/buku') }}">{{ __('Buku') }}</a></li>
+                                <li><a class="nav-link" href="{{ url('admin/peminjaman') }}">{{ __('Peminjaman') }}</a></li>
+                                <li><a class="nav-link" href="{{ url('admin/pengembalian') }}">{{ __('Pengembalian') }}</a></li>
                                 <li><a class="nav-link" href="{{ url('admin/stok') }}">{{ __('Stok') }}</a></li>
+                                <li><a class="nav-link" href="{{ url('admin/buku') }}">{{ __('Buku') }}</a></li>
+                                <li><a class="nav-link" href="{{ url('admin/user') }}">{{ __('User') }}</a></li>
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->username }} <span class="caret"></span>

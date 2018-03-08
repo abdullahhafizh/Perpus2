@@ -17,8 +17,8 @@ class CreateStockOfBooksTable extends Migration
             $table->increments('id');
             $table->string('judul_buku')->index();
             $table->foreign('judul_buku')->references('judul_buku')->on('book_lists')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('nomor_rak');
-            $table->integer('jumlah_buku');
+            $table->integer('nomor_rak')->nullable();
+            $table->integer('jumlah_buku')->nullable();
             $table->timestamps();
         });
     }

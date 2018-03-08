@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BookList;
+use App\StockOfBook;
 
 class BookListController extends Controller
 {
@@ -52,6 +53,10 @@ class BookListController extends Controller
         $table->pengarang = $request->input('pengarang');
         $table->kategori = $request->input('kategori');
         $table->save();
+
+        $table2 = new StockOfBook;
+        $table2->judul_buku = $request->input('judul_buku');
+        $table2->save();
 
         return redirect(url('admin/buku'));
     }

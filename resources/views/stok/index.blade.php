@@ -8,9 +8,9 @@
                 <div class="card-header">Stok Buku</div>
 
                 <div class="card-body">
-                    <div class="form-group">
-                        <a href="{{ url('admin/stok/create') }}" style="color: inherit;text-decoration: none;"><button type="button" class="btn btn-success btn-lg btn-block">Input Stok Buku</button></a>
-                    </div>
+                    <!-- <div class="form-group">
+                        <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target=".insv">Input Stok Buku</button>
+                    </div> -->
                     <div class="table-responsive">
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
