@@ -104,7 +104,10 @@ class BookListController extends Controller
     public function destroy($id)
     {
         $table = BookList::find($id);
+        $id2 = StockOfBook::where('judul_buku', '=', $table->judul_buku)->value('id');
+        $table2 = StockOfBook::find($id2);
         $table->delete();
+        $table2->delete();
 
         return redirect(url('admin/buku'));
     }

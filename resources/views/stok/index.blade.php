@@ -39,7 +39,7 @@
                                         <div class="text-center">
                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target=".up{{ $stock->id }}">Edit</button>
-                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target=".del{{ $stock->id }}">Hapus</button>
+                                                <!-- <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target=".del{{ $stock->id }}">Hapus</button> -->
                                             </div>
                                         </div>
                                     </td>
@@ -55,7 +55,7 @@
 </div>
 
 @foreach($stocks as $stock)
-<div class="modal fade del{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<!-- <div class="modal fade del{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div class="modal fade up{{ $stock->id }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
