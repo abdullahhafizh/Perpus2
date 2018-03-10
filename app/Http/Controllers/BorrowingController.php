@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\BookList;
 use App\Borrowing;
 use App\StockOfBook;
+use Carbon\Carbon;
 
 class BorrowingController extends Controller
 {
@@ -72,7 +73,17 @@ class BorrowingController extends Controller
     {
         $table = Borrowing::find($id);
         $table->tanggal_kembali = date('Y-m-d');
-        $table->status_peminjaman = 1;        
+        $table->status_peminjaman = 1;
+        $created = new Carbon($table->tanggal_pinjam);
+        $now = new Carbon(date('Y-m-d'));
+        $difference = ($created->diffInWeeks($now) < 1) ? 1 : $created->diffInWeeks($now);        
+        if ($difference>1) {
+            $table->denda = $difference * 10000;
+        }
+        else
+        {
+            $table->denda = 0;
+        }
         $table->save();
 
         $id = StockOfBook::where('judul_buku', '=', $table->judul_buku)->value('id');

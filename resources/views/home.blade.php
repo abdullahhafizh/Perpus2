@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card border-light">
                 <div class="card-header">Buku</div>
 
                 <div class="card-body">                    

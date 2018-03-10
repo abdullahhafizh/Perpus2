@@ -58,6 +58,23 @@ class StockOfBooksController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function add(Request $request, $id)
+    {
+        $table = StockOfBook::find($id);
+        $jumlah = $table->jumlah_buku;        
+        $table->jumlah_buku = $jumlah + $request->input('jumlah_buku');        
+        $table->save();
+
+        return redirect(url('admin/stok'));
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

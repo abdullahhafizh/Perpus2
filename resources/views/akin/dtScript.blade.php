@@ -51,7 +51,48 @@
             }
         },     
         lengthChange: true,
-        buttons: [ 'copy', 'csv', 'excel', 'pdf', 'print', 'colvis' ]
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copy',
+                text: 'Salin',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            {
+                extend: 'csv',
+                text: 'Export CSV',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            {
+                extend: 'excel',
+                text: 'Export Excel',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            {
+                extend: 'pdf',
+                text: 'Export PDF',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            {
+                extend: 'print',
+                text: 'Print',
+                exportOptions: {
+                    columns: 'th:not(:last-child)'
+                }
+            },
+            {
+                extend: 'colvis',
+                text: 'Visibilitas Kolom',
+            },
+        ]
     } );
 
     table.buttons().container()

@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">Buku</div>
+            <div class="card border-light">
+                <div class="card-header">Peminjaman</div>
 
                 <div class="card-body">                    
                     <div class="table-responsive">
@@ -40,7 +40,7 @@
                                     <td>{{ $borrow->tanggal_pinjam }}</td>
                                     <td>
                                         <div class="text-center">
-                                            <a href="{{ url('admin/peminjaman/'.$borrow->id.'/store') }}" class="btn btn-sm btn-warning">Kembalikan</a>                              
+                                            <a href="{{ url('admin/peminjaman/'.$borrow->id.'/store') }}" class="btn btn-sm btn-warning">Kembalikan</a>                    
                                         </div>
                                     </td>
                                 </tr>

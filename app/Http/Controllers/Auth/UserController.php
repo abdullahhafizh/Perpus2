@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.home');
     }
 
     /**
@@ -81,7 +81,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $table = User::find($id);
+        $table->status = $request->input('status');
+        $table->save();
+
+        return redirect(url('admin/user'));
     }
 
     /**
@@ -92,6 +96,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $table = User::find($id);        
+        $table->delete();
+
+        return redirect(url('admin/user'));
     }
 }

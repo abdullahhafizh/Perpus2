@@ -92,7 +92,24 @@ class BookListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $table = BookList::find($id);
+        $book = $table->judul_buku;
+        if (!$request->input('kode_buku')==null) {
+            $table->kode_buku = $request->input('kode_buku');
+        }
+        $table->judul_buku = $request->input('judul_buku');
+        $table->pengarang = $request->input('pengarang');
+        $table->kategori = $request->input('kategori');
+        $table->save();
+
+        if (!$request->input('kode_buku')==null) {
+            $id2 = StockOfBook::where('judul_buku', '=', $book)->value('id');
+            $table2 = StockOfBook::find($id2);
+            $table2->judul_buku = $request->input('judul_buku');
+            $table2->save();
+        }
+
+        return redirect(url('admin/buku'));
     }
 
     /**
