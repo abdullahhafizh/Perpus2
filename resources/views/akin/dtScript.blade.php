@@ -50,8 +50,7 @@
                 "sortDescending": ": aktifkan untuk mengurutkan kolom descending"
             }
         },     
-        lengthChange: true,
-        dom: 'Bfrtip',
+        lengthChange: true,        
         buttons: [
             {
                 extend: 'copy',
