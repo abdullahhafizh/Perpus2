@@ -13,7 +13,8 @@
     <!-- Styles -->    
     @yield('head-content')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="http://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/octicons/lib/octicons.css') }}" rel="stylesheet">
     <style>
     img[alt*="www.000webhost.com"] {
         display: none;}
@@ -94,13 +95,21 @@
                     </main>
                     <footer class="footer">
                       <div class="container">
+                        <span class="octicon octicon-mark-github"></span>                        
                         <span class="text-muted">SMK Negeri 10 Jakarta - InterSoft - Abdullah Hafizh</span>
+                        <div class="float-right">                            
+                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh" aria-label="Follow @abdullahhafizh on GitHub" title="Follow @abdullahhafizh on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/mark-github.svg"></img> Follow @abdullahhafizh</a>
+                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh/Perpus2/subscription" aria-label="Watch abdullahhafizh/Perpus2 on GitHub" title="Watch abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/eye.svg"></img> Watch</a>
+                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh/Perpus2" aria-label="Star abdullahhafizh/Perpus2 on GitHub" title="Star abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/star.svg"></img> Star</a>
+                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh/Perpus2/archive/master.zip" aria-label="Download abdullahhafizh/Perpus2 on GitHub" title="Download abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/cloud-download.svg"></img> Download</a>
+                        </div>
                     </div>
                 </footer>
             </div>
 
             <!-- Scripts -->
-            <script src="{{ asset('js/app.js') }}"></script>        
+            <script src="{{ asset('js/app.js') }}"></script>
+            <!-- Place this tag in your head or just before your close body tag. -->            
             @yield('foot-content')
         </body>
         </html>

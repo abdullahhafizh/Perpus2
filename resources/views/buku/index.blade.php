@@ -15,6 +15,7 @@
                         <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Kode</th>
                                     <th>Judul</th>
                                     <th>Pengarang</th>
@@ -24,6 +25,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Kode</th>
                                     <th>Judul</th>
                                     <th>Pengarang</th>
@@ -34,6 +36,7 @@
                             <tbody>
                                 @foreach($books as $book)
                                 <tr>
+                                    <td>{{ $book->id }}</td>
                                     <td>{{ $book->kode_buku }}</td>
                                     <td>{{ $book->judul_buku }}</td>
                                     <td>{{ $book->pengarang }}</td>

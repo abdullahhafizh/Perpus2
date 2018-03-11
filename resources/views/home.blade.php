@@ -29,7 +29,11 @@
                                 </tr>
                             </tfoot>  
                             <tbody>
-                                @foreach($books as $book)
+                                @foreach($books as $book)                                
+                                <?php
+                                $stock = App\StockOfBook::where('judul_buku', '=', $book->judul_buku)->value('jumlah_buku');
+                                ?>
+                                @if($stock>=1)
                                 <tr>
                                     <td>{{ $book->kode_buku }}</td>
                                     <td>{{ $book->judul_buku }}</td>
@@ -42,7 +46,8 @@
                                             </div>
                                         </div>
                                     </td>
-                                </tr>
+                                </tr>                                
+                                @endif
                                 @endforeach
                             </tbody>
                         </table>
