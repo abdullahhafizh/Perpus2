@@ -15,10 +15,23 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
     <link href="{{ asset('css/octicons/lib/octicons.css') }}" rel="stylesheet">
-    <style>
-    img[alt*="www.000webhost.com"] {
-        display: none;}
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <style>    
+    .footer2 {
+      position: absolute;      
+      bottom: 0 auto;      
+      width: 100%;
+      height: auto;
+      line-height: 60px;
+      background-color: #f5f5f5;
+  } 
+  img[alt*="www.000webhost.com"] {
+    display: none;}
+    .icon:hover {
+        -webkit-animation: pulse 0.75s;
+        animation: pulse 0.75s;
+    }
+</style>
 </head>
 <body>
     <div id="app">
@@ -31,85 +44,100 @@
                 <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #e3f2fd;">
                     @endif
                     @endguest
-                    <div class="container">
-                        @guest
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            @else
-                            @if(Auth::user()->status==1)
-                            <a class="navbar-brand" href="{{ url('admin') }}">
+                    <div class="container">                        
+                        <a class="navbar-brand " href="{{ url('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <!-- Left Side Of Navbar -->
+                            <ul class="navbar-nav mr-auto">
+                                @guest
                                 @else
-                                <a class="navbar-brand" href="{{ url('/') }}">
-                                    @endif
-                                    @endguest
-                                    {{ config('app.name', 'Laravel') }}
-                                </a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
+                                @if(Auth::user()->status==1)
+                                <li><a class="{{Request::segment(1) == 'admin' && Request::segment(2) == null ? 'active' : null}} nav-link" href="{{ url('admin') }}">{{ __('Home Admin') }}</a></li>
+                                @endif
+                                @endguest
+                            </ul>
 
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <!-- Left Side Of Navbar -->
-                                    <ul class="navbar-nav mr-auto">
+                            <!-- Right Side Of Navbar -->
+                            <ul class="navbar-nav ml-auto">
+                                <!-- Authentication Links -->
+                                @guest
+                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                                <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                @else
+                                @if(Auth::user()->status==1)
+                                <li class="{{Request::segment(2) == 'peminjaman' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/peminjaman') }}">{{ __('Peminjaman') }}</a></li>
+                                <li class="{{Request::segment(2) == 'pengembalian' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/pengembalian') }}">{{ __('Pengembalian') }}</a></li>
+                                <li class="{{Request::segment(2) == 'stok' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/stok') }}">{{ __('Stok') }}</a></li>
+                                <li class="{{Request::segment(2) == 'buku' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/buku') }}">{{ __('Buku') }}</a></li>
+                                <li class="{{Request::segment(2) == 'user' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/user') }}">{{ __('User') }}</a></li>
+                                @endif
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->username }} <span class="caret"></span>
+                                    </a>
 
-                                    </ul>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
 
-                                    <!-- Right Side Of Navbar -->
-                                    <ul class="navbar-nav ml-auto">
-                                        <!-- Authentication Links -->
-                                        @guest
-                                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                                        @else
-                                        @if(Auth::user()->status==1)
-                                        <li class="{{Request::segment(2) == 'peminjaman' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/peminjaman') }}">{{ __('Peminjaman') }}</a></li>
-                                        <li class="{{Request::segment(2) == 'pengembalian' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/pengembalian') }}">{{ __('Pengembalian') }}</a></li>
-                                        <li class="{{Request::segment(2) == 'stok' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/stok') }}">{{ __('Stok') }}</a></li>
-                                        <li class="{{Request::segment(2) == 'buku' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/buku') }}">{{ __('Buku') }}</a></li>
-                                        <li class="{{Request::segment(2) == 'user' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/user') }}">{{ __('User') }}</a></li>
-                                        @endif
-                                        <li class="nav-item dropdown">
-                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                {{ Auth::user()->username }} <span class="caret"></span>
-                                            </a>
-
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
-                                    @endguest
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-
-                    <main class="py-4">
-                        @yield('content')
-                    </main>
-                    <footer class="footer">
-                      <div class="container">
-                        <span class="octicon octicon-mark-github"></span>                        
-                        <span class="text-muted">SMK Negeri 10 Jakarta - InterSoft - Abdullah Hafizh</span>
-                        <div class="float-right">                            
-                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh" aria-label="Follow @abdullahhafizh on GitHub" title="Follow @abdullahhafizh on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/mark-github.svg"></img> Follow @abdullahhafizh</a>
-                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh/Perpus2/subscription" aria-label="Watch abdullahhafizh/Perpus2 on GitHub" title="Watch abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/eye.svg"></img> Watch</a>
-                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh/Perpus2" aria-label="Star abdullahhafizh/Perpus2 on GitHub" title="Star abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/star.svg"></img> Star</a>
-                            <a style="color: inherit;" class="btn btn-default" href="https://github.com/abdullahhafizh/Perpus2/archive/master.zip" aria-label="Download abdullahhafizh/Perpus2 on GitHub" title="Download abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="css/octicons/lib/svg/cloud-download.svg"></img> Download</a>
-                        </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest
+                        </ul>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </nav>
 
-            <!-- Scripts -->
-            <script src="{{ asset('js/app.js') }}"></script>
-            <!-- Place this tag in your head or just before your close body tag. -->            
-            @yield('foot-content')
-        </body>
-        </html>
+            <main class="py-4">
+                @yield('content')
+            </main>
+            <footer class="footer2">
+              <div class="container">                        
+                <div class="float-left text-center">
+                    <a class="text-muted" href="http://smkn10jakarta.sch.id" target="_blank">SMK Negeri 10 Jakarta</a> -
+                    <a class="text-muted">InterSoft</a> -
+                    <a class="text-muted" href="https://facebook.com/100006797383542/" target="_blank">Abdullah Hafizh</a>
+                </div>                     
+                <div class="float-right text-center">
+                    <a href="https://github.com/abdullahhafizh" target="_blank">
+                        <button class="icon btn btn-default" aria-label="Follow @abdullahhafizh on GitHub" title="Follow @abdullahhafizh on GitHub">
+                            <img class="img-responsive" src="{{ asset('css/octicons/lib/svg/mark-github.svg') }}"></img> <b>Follow @abdullahhafizh</b>
+                        </button>
+                    </a>
+                    <a href="https://github.com/abdullahhafizh/Perpus2/subscription" target="_blank">
+                        <button class="icon btn btn-default" aria-label="Watch abdullahhafizh/Perpus2 on GitHub" title="Watch abdullahhafizh/Perpus2 on GitHub">
+                            <img class="img-responsive" src="{{ asset('css/octicons/lib/svg/eye.svg') }}"></img> <b>Watch</b>
+                        </button>
+                    </a>
+                    <a href="https://github.com/abdullahhafizh/Perpus2" target="_blank">
+                        <button class="icon btn btn-default" aria-label="Star abdullahhafizh/Perpus2 on GitHub" title="Star abdullahhafizh/Perpus2 on GitHub">
+                            <img class="img-responsive" src="{{ asset('css/octicons/lib/svg/star.svg') }}"></img> <b>Star</b>
+                        </button>
+                    </a>
+                    <a href="https://github.com/abdullahhafizh/Perpus2/archive/master.zip" target="_blank">
+                        <button class="icon btn btn-default" aria-label="Download abdullahhafizh/Perpus2 on GitHub" title="Download abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="{{ asset('css/octicons/lib/svg/cloud-download.svg') }}"></img> <b>Download</b>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->            
+    @yield('foot-content')
+</body>
+</html>
