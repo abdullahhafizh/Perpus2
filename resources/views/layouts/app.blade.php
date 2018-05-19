@@ -14,24 +14,23 @@
     @yield('head-content')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/octicons/lib/octicons.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
-    <style>    
-    .footer2 {
-      position: absolute;      
-      bottom: 0 auto;      
-      width: 100%;
-      height: auto;
-      line-height: 60px;
-      background-color: #f5f5f5;
-  } 
-  img[alt*="www.000webhost.com"] {
-    display: none;}
-    .icon:hover {
-        -webkit-animation: pulse 0.75s;
-        animation: pulse 0.75s;
-    }
-</style>
+    <style>
+    img[alt*="www.000webhost.com"] {
+        display: none;}
+        .icon:hover {
+            -webkit-animation: pulse 1s;
+            animation: pulse 1s;
+        }
+    </style>
+    @if(Request::segment(1) == 'login' || Request::segment(1) == 'register')
+    <style type="text/css">
+        .footer {
+            position: absolute;
+        }
+    </style>
+    @endif
 </head>
 <body>
     <div id="app">
@@ -66,9 +65,7 @@
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav ml-auto">
                                 <!-- Authentication Links -->
-                                @guest
-                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                                <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                @guest                                
                                 @else
                                 @if(Auth::user()->status==1)
                                 <li class="{{Request::segment(2) == 'peminjaman' ? 'active' : null}}"><a class="nav-link" href="{{ url('admin/peminjaman') }}">{{ __('Peminjaman') }}</a></li>
@@ -103,41 +100,27 @@
             <main class="py-4">
                 @yield('content')
             </main>
-            <footer class="footer2">
-              <div class="container">                        
-                <div class="float-left text-center">
-                    <a class="text-muted" href="http://smkn10jakarta.sch.id" target="_blank">SMK Negeri 10 Jakarta</a> -
-                    <a class="text-muted">InterSoft</a> -
-                    <a class="text-muted" href="https://facebook.com/100006797383542/" target="_blank">Abdullah Hafizh</a>
-                </div>                     
-                <div class="float-right text-center">
-                    <a href="https://github.com/abdullahhafizh" target="_blank">
-                        <button class="icon btn btn-default" aria-label="Follow @abdullahhafizh on GitHub" title="Follow @abdullahhafizh on GitHub">
-                            <img class="img-responsive" src="{{ asset('css/octicons/lib/svg/mark-github.svg') }}"></img> <b>Follow @abdullahhafizh</b>
-                        </button>
-                    </a>
-                    <a href="https://github.com/abdullahhafizh/Perpus2/subscription" target="_blank">
-                        <button class="icon btn btn-default" aria-label="Watch abdullahhafizh/Perpus2 on GitHub" title="Watch abdullahhafizh/Perpus2 on GitHub">
-                            <img class="img-responsive" src="{{ asset('css/octicons/lib/svg/eye.svg') }}"></img> <b>Watch</b>
-                        </button>
-                    </a>
-                    <a href="https://github.com/abdullahhafizh/Perpus2" target="_blank">
-                        <button class="icon btn btn-default" aria-label="Star abdullahhafizh/Perpus2 on GitHub" title="Star abdullahhafizh/Perpus2 on GitHub">
-                            <img class="img-responsive" src="{{ asset('css/octicons/lib/svg/star.svg') }}"></img> <b>Star</b>
-                        </button>
-                    </a>
-                    <a href="https://github.com/abdullahhafizh/Perpus2/archive/master.zip" target="_blank">
-                        <button class="icon btn btn-default" aria-label="Download abdullahhafizh/Perpus2 on GitHub" title="Download abdullahhafizh/Perpus2 on GitHub"><img class="img-responsive" src="{{ asset('css/octicons/lib/svg/cloud-download.svg') }}"></img> <b>Download</b>
-                        </button>
-                    </a>
+            <footer class="footer footer-distributed">                
+                <div class="footer-right">
+                    <a class="icon" href="https://github.com/abdullahhafizh" target="_blank" aria-label="Follow @abdullahhafizh on GitHub" title="Follow @abdullahhafizh on GitHub"><i class="fa fa-github"></i></a>                    
+                    <a class="icon" href="https://github.com/abdullahhafizh/Perpus2/subscription" target="_blank" aria-label="Watch abdullahhafizh/Perpus2 on GitHub" title="Watch abdullahhafizh/Perpus2 on GitHub"><i class="fa fa-eye"></i></a>
+                    <a class="icon" href="https://github.com/abdullahhafizh/Perpus2" target="_blank" aria-label="Star abdullahhafizh/Perpus2 on GitHub" title="Star abdullahhafizh/Perpus2 on GitHub"><i class="fa fa-star"></i></a>
+                    <a class="icon" href="https://github.com/abdullahhafizh/Perpus2/archive/master.zip" target="_blank" aria-label="Download abdullahhafizh/Perpus2 on GitHub" title="Download abdullahhafizh/Perpus2 on GitHub"><i class="fa fa-cloud-download"></i></a>
                 </div>
-            </div>
-        </footer>
-    </div>
+                <div class="footer-left">
+                    <p class="footer-links text-muted">
+                        <a href="http://smkn10jakarta.sch.id/" target="_blank">SMK Negeri 10 Jakarta</a>
+                        ·
+                        <a>InterSoft</a>                        
+                    </p>
+                    <p>Abdullah Hafizh &copy; {{ date('Y') }}</p>
+                </div>
+            </footer>
+        </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <!-- Place this tag in your head or just before your close body tag. -->            
-    @yield('foot-content')
-</body>
-</html>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        <!-- Place this tag in your head or just before your close body tag. -->            
+        @yield('foot-content')
+    </body>
+    </html>

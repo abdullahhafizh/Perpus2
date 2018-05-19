@@ -2,6 +2,11 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap4.min.css">
+<style type="text/css">
+    div.dataTables_wrapper {
+        margin-bottom: 3em;
+    }
+</style>
 @endsection
 
 @section('foot-content')
@@ -19,13 +24,13 @@
 <script type="text/javascript">
     $(document).ready(function() {
     // Setup - add a text input to each footer cell
-    $('#example tfoot th').each( function () {
+    $('table tfoot th').each( function () {
         var title = $(this).text();
         $(this).html( '<input class="form-control form-control-sm" type="text" placeholder="Cari '+title+'" />' );
     } );
 
     // DataTable    
-    var table = $('#example').DataTable( {
+    var table = $('table').DataTable( {
         "language": {
             "decimal":        "",
             "emptyTable":     "Tidak ada data yang tersedia pada tabel ini",
@@ -82,7 +87,7 @@
             },
             {
                 extend: 'print',
-                text: 'Print',
+                text: 'Cetak',
                 exportOptions: {
                     columns: 'th:not(:last-child)'
                 }
